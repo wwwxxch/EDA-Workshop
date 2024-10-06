@@ -3,17 +3,20 @@
   hosts: all
   
   # Define our source for events
+  # Source is webhook
   sources:
     - ansible.eda.webhook:
         host: 0.0.0.0
         port: 5000
   
   # Define the conditions we are looking for
+  # if payload message is "DevOpsDays"
   rules:
     - name: Which IT seminar are you attending?
       condition: event.payload.message == "DevOpsDays"
       
       # Define the action we should take should the condition be met
+      # Print "You are right. DevOpsDays 2024. Good Job!"
       action:
         debug:
           msg: "You are right. {{ event.payload.message }} Taipei 2024. Good Job!"
